@@ -1,29 +1,30 @@
+nodes=int(input("Enter number of nodes in the graph\n"))
+graph={}
+print("Enter the vertices in alphabetical order starting from A")
+for i in range(nodes):
+    v=input("Enter Vertex\n")
+    print("Enter the neighbours of",v)
+    neighbours=list(map(str,input().split()))
+    graph.update({v:neighbours})
+print("The Graph is:")
+print(graph)
+
+print("----BFS Traversal----")
+visited=[]
+q=[]
+def bfs(graph,start):
+    visited.append(start)
+    q.append(start)
+    print("The BFS Path is:\n")
+    while q:
+        vertex=q.pop(0)
+        print(vertex, end=" ")
+        
+        for adjacent in graph[vertex]:
+            if adjacent not in visited:
+                visited.append(adjacent)
+                q.append(adjacent)
+
+bfs(graph,'A')
 
 
-graph = {
-'A' : ['B','C'],
-'B' : ['D', 'E'],
-'C' : ['F'],
-'D' : [],
-'E' : ['F'],
-'F' : []
-}
-
-visited = [] # List to keep track of visited nodes.
-queue = []     #Initialize a queue
-
-defbfs(visited, graph, node):
-visited.append(node)
-queue.append(node)
-
-while queue:
-    s = queue.pop(0) 
-print (s, end = " ") 
-
-forneighbour in graph[s]:
-ifneighbour not in visited:
-visited.append(neighbour)
-queue.append(neighbour)
-
-# Driver Code
-bfs(visited, graph, 'A')
